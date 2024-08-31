@@ -1,0 +1,11 @@
+# Virtual host name associated with your app
+NGINX_SERVER_NAME=paperstatus.straive.app
+
+# Only use HTTPS
+NGINX_HTTPS_ONLY=1
+
+# Always restart on deploy
+PIKU_AUTO_RESTART=1
+
+# comma-separated array of /url:path values that will be served directly by nginx
+# NGINX_STATIC_PATHS=/static:static,/js:js

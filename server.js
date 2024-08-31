@@ -1,8 +1,8 @@
 import express from "express";
 
 const token = process.env.LLMFOUNDRY_TOKEN;
+const port = process.env.PORT || 3000;
 const app = express();
-const port = 3000;
 
 // Serve static files from public/ folder
 app.use(express.static("public"));
