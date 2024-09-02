@@ -33,7 +33,7 @@ app.post("/extract", async (req, res) => {
   if (json) {
     try {
       const { id } = JSON.parse(json);
-      res.send(/* html */`
+      res.send(/* html */ `
         <h1>${subject}</h1>
         <form id="chat" action="https://qts.springernature.com/chatbot.php" method="POST" enctype="multipart/form-data" target="_blank">
           <input name="msg" value="${id}">
@@ -52,7 +52,6 @@ app.post("/extract", async (req, res) => {
   }
 });
 
-
 app.post("/compose", async (req, res) => {
   const apiUrl =
     "https://llmfoundry.straive.com/azure/openai/deployments/gpt-4o-mini/chat/completions?api-version=2024-05-01-preview";
@@ -65,7 +64,7 @@ app.post("/compose", async (req, res) => {
           role: "system",
           content: `"subject" and "body" contain a user's email. Write an reply email explaining the status of the manuscript based on the rest of the information.`,
         },
-        { role: "user", content: JSON.stringify(req.body)},
+        { role: "user", content: JSON.stringify(req.body) },
       ],
     }),
   }).then((r) => r.json());
@@ -74,7 +73,6 @@ app.post("/compose", async (req, res) => {
     <script>navigator.clipboard.writeText(document.querySelector("#email").textContent);</script>
 `);
 });
-
 
 app.listen(port, () => {
   console.log(`Running on http://localhost:${port}/`);

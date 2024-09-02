@@ -1,13 +1,4 @@
-import { minify } from "https://cdn.jsdelivr.net/npm/terser@5/+esm";
-
-async function bookmarklet(func) {
-  let funcBody = func
-    .toString()
-    .replace(/^[^{]+{|}$/g, "")
-    .replace(/\[ORIGIN\]/g, window.location.origin);
-  let minified = (await minify(funcBody.trim())).code;
-  return `javascript:(function(){${minified}})();`;
-}
+import { bookmarklet } from "./utils.js";
 
 function extract() {
   let $form = document.querySelector("#paper-status-form");
@@ -32,8 +23,6 @@ function extract() {
   $form.remove();
 }
 
-document.querySelector("#extract-bookmarklet").href = await bookmarklet(extract);
-
 function compose() {
   let $form = document.querySelector("#paper-status-form");
   if ($form) $form.remove();
@@ -52,4 +41,5 @@ function compose() {
   $form.remove();
 }
 
+document.querySelector("#extract-bookmarklet").href = await bookmarklet(extract);
 document.querySelector("#compose-bookmarklet").href = await bookmarklet(compose);
