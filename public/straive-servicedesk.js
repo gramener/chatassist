@@ -62,8 +62,11 @@ async function serviceDesk() {
             messages: [
               {
                 role: "system",
-                content:
-                  "Reply to the user email using the document history. Summarize the status. Then mention the full history.",
+                content: `You are a customer service agent. Reply to the user email based on the provided email history.
+
+This is a dummy email for a demo. Make up realistic data for your reply as required. Ensure that the reply is realistic and will be realistic and believable.
+
+Don't include a subject in your reply. Don't include the greeting or footer. Just the body of the email.`,
               },
               {
                 role: "user",
@@ -136,7 +139,7 @@ ${history.map((h) => `${h.date.toLocaleDateString()} - ${h.state}`).join("\n")}
           break;
       }
 
-      if (possibleNextStates.length === 0 || Math.random() < 0.3) break;
+      if (possibleNextStates.length === 0 || Math.random() < 0.2) break;
 
       currentState = getRandomElement(possibleNextStates);
       currentDate = getRandomDate(currentDate, new Date());
